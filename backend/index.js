@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import bodyParser from 'body-parser';
 import authRoute from './src/routes/auth.js';
 
@@ -7,6 +8,12 @@ const app = express();
 const port = 3001;
 
 app.use(bodyParser.json());
+
+app.use(
+  cors({
+    origin: '*',
+  }),
+);
 
 // Routes
 app.use('/auth', authRoute);
