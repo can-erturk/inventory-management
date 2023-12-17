@@ -1,11 +1,18 @@
 import express from 'express';
+import bodyParser from 'body-parser';
+import authRoute from './src/routes/auth.js';
 
 // App configs
 const app = express();
 const port = 3001;
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
+app.use(bodyParser.json());
+
+// Routes
+app.use('/auth', authRoute);
+
+app.get('*', (req, res) => {
+  res.send({ status: 404, message: 'Requested resource not found' });
 });
 
 // Start server
