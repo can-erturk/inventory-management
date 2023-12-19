@@ -5,17 +5,17 @@ const SENDER_EMAIL_ADDRESS = getEnv('SENDER_EMAIL_ADDRESS');
 const SENDER_EMAIL_PASSWORD = getEnv('SENDER_EMAIL_PASSWORD');
 
 export default async function emailSender(sendTo, subject, html) {
-  const transporter = nodemailer.createTransport({
-    host: 'smtp.yandex.com',
-    port: 465,
-    secure: true,
-    auth: {
-      user: SENDER_EMAIL_ADDRESS,
-      pass: SENDER_EMAIL_PASSWORD,
-    },
-  });
-
   try {
+    const transporter = nodemailer.createTransport({
+      host: 'smtp.yandex.com',
+      port: 465,
+      secure: true,
+      auth: {
+        user: SENDER_EMAIL_ADDRESS,
+        pass: SENDER_EMAIL_PASSWORD,
+      },
+    });
+
     return await transporter.sendMail({
       from: SENDER_EMAIL_ADDRESS,
       to: sendTo,
