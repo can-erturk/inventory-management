@@ -11,7 +11,6 @@ export default async function register(req, res) {
     return res.send({
       status: 401,
       message: 'Invalid credentials',
-      res: {},
     });
   }
 
@@ -27,12 +26,18 @@ export default async function register(req, res) {
 
     // If email exists
     if (isEmailExists !== null) {
-      return res.send({ message: 'This email is already in use.' });
+      return res.send({
+        status: 400,
+        message: 'This email is already in use.',
+      });
     }
 
     // If username exists
     if (isUsernameExists !== null) {
-      return res.send({ message: 'This username is already in use.' });
+      return res.send({
+        status: 400,
+        message: 'This username is already in use.',
+      });
     }
 
     // Save user to database if user doesn't exist
@@ -49,6 +54,9 @@ export default async function register(req, res) {
       jwt: createToken(user),
     });
   } catch (error) {
-    return res.send({ message: error.message });
+    return res.send({
+      status: 500,
+      message: error.message,
+    });
   }
 }

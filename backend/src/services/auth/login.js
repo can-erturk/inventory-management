@@ -11,7 +11,6 @@ export default async function login(req, res) {
     return res.send({
       status: 401,
       message: 'You must provide a username and password.',
-      res: {},
     });
   }
 
@@ -25,7 +24,10 @@ export default async function login(req, res) {
 
     // If user doesn't exist
     if (isUserExists === null) {
-      return res.send({ message: 'User does not exist.' });
+      return res.send({
+        status: 400,
+        message: 'User does not exist.',
+      });
     }
 
     // Compare password
@@ -36,7 +38,10 @@ export default async function login(req, res) {
 
     // If password is incorrect
     if (!isPasswordCorrect) {
-      return res.send({ message: 'You entered an incorrect password.' });
+      return res.send({
+        status: 400,
+        message: 'You entered an incorrect password.',
+      });
     }
 
     // If password is correct
@@ -46,6 +51,9 @@ export default async function login(req, res) {
       jwt: createToken(isUserExists),
     });
   } catch (error) {
-    return res.send({ message: error.message });
+    return res.send({
+      status: 500,
+      message: error.message,
+    });
   }
 }

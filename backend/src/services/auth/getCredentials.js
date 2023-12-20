@@ -19,25 +19,28 @@ export default async function getCredentials(req, res) {
   try {
     await connectDB();
 
+    // Verify jwt token and return user data if jwt is valid
     return jsonwebtoken.verify(jwt, JWT_SECRET_KEY, async (err, decoded) => {
       if (!err) {
         const user = await User.findOne({ username: decoded.username });
 
-        if (user) {
+        // If user doesn't exist
+        if (!user) {
           return res.send({
-            status: 200,
-            message: 'User found.',
-            data: {
-              username: user.username,
-              email: user.email,
-              activation: user.activation.status,
-            },
+            status: 400,
+            message: 'User is not found!',
           });
         }
 
+        // If user exists return user data
         return res.send({
-          status: 400,
-          message: 'User is not found!',
+          status: 200,
+          message: 'User found.',
+          data: {
+            username: user.username,
+            email: user.email,
+            activation: user.activation.status,
+          },
         });
       } else {
         return res.send({
@@ -48,7 +51,7 @@ export default async function getCredentials(req, res) {
     });
   } catch (error) {
     return res.send({
-      status: 400,
+      status: 500,
       message: error.message,
     });
   }
