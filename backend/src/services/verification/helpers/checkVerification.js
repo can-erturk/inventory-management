@@ -1,5 +1,5 @@
-import connectDB from '../../../lib/mongodb/connectDB.js';
-import User from '../../../lib/mongodb/models/User.model.js';
+import connectDB from '#src/lib/mongodb/connectDB.js';
+import User from '#src/lib/mongodb/models/User.model.js';
 
 export default async function checkVerification(email) {
   try {

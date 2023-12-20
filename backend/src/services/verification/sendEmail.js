@@ -1,6 +1,6 @@
-import { emailRegex } from '../../lib/helpers/regex.js';
-import emailSender from '../../lib/helpers/emailSender.js';
-import VerificationMail from '../../lib/templates/verificationMail.js';
+import { emailRegex } from '#src/lib/helpers/regex.js';
+import emailSender from '#src/lib/helpers/emailSender.js';
+import VerificationMail from '#src/lib/templates/verificationMail.js';
 import verificationURL from './helpers/verificationURL.js';
 import checkVerification from './helpers/checkVerification.js';
 import setVerificationKey from './helpers/setVerificationKey.js';

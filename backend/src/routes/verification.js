@@ -1,7 +1,7 @@
 import express from 'express';
-import sendEmail from '../services/verification/sendEmail.js';
-import verifyEmail from '../services/verification/verifyEmail.js';
-import isVerified from '../services/verification/isVerified.js';
+import sendEmail from '#src/services/verification/sendEmail.js';
+import verifyEmail from '#src/services/verification/verifyEmail.js';
+import isVerified from '#src/services/verification/isVerified.js';
 
 const router = express.Router();
 

@@ -1,7 +1,7 @@
-import connectDB from '../../lib/mongodb/connectDB.js';
-import User from '../../lib/mongodb/models/User.model.js';
+import connectDB from '#src/lib/mongodb/connectDB.js';
+import User from '#src/lib/mongodb/models/User.model.js';
 import jsonwebtoken from 'jsonwebtoken';
-import getEnv from '../../lib/helpers/getEnv.js';
+import getEnv from '#src/lib/helpers/getEnv.js';
 
 const JWT_SECRET_KEY = getEnv('JWT_SECRET_KEY');
 

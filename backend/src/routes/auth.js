@@ -1,7 +1,7 @@
 import express from 'express';
-import login from '../services/auth/login.js';
-import register from '../services/auth/register.js';
-import getCredentials from '../services/auth/getCredentials.js';
+import login from '#src/services/auth/login.js';
+import register from '#src/services/auth/register.js';
+import getCredentials from '#src/services/auth/getCredentials.js';
 
 const router = express.Router();
 

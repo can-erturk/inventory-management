@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs';
-import createToken from '../../lib/helpers/createToken.js';
-import connectDB from '../../lib/mongodb/connectDB.js';
-import User from '../../lib/mongodb/models/User.model.js';
+import createToken from '#src/lib/helpers/createToken.js';
+import connectDB from '#src/lib/mongodb/connectDB.js';
+import User from '#src/lib/mongodb/models/User.model.js';
 
 export default async function register(req, res) {
   const { username, email, password } = req.body;

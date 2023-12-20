@@ -1,8 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import authRoute from './src/routes/auth.js';
-import verificationRoute from './src/routes/verification.js';
+import authRoute from '#src/routes/auth.js';
+import verificationRoute from '#src/routes/verification.js';
 
 // App configs
 const app = express();

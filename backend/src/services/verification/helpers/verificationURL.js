@@ -1,5 +1,5 @@
-import getEnv from '../../../lib/helpers/getEnv.js';
-import { sha256 } from '../../../lib/helpers/crypter.js';
+import getEnv from '#src/lib/helpers/getEnv.js';
+import { sha256 } from '#src/lib/helpers/crypter.js';
 
 const baseUrl = getEnv('BASE_URL');
 
