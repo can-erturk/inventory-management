@@ -6,7 +6,10 @@ const getEnv = (key) => {
   const value = process.env[key];
 
   if (!value) {
-    throw new Error(`Missing env var ${key}`);
+    console.log(
+      '\x1b[31m' + `[app] Environment variable '${key}' is missing` + '\x1b[0m',
+    );
+    return process.exit(1);
   }
 
   return value;
