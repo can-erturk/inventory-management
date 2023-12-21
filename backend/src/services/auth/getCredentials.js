@@ -1,9 +1,4 @@
-import connectDB from '#src/lib/mongodb/connectDB.js';
-import User from '#src/lib/mongodb/models/User.model.js';
-import jsonwebtoken from 'jsonwebtoken';
-import getEnv from '#src/lib/helpers/getEnv.js';
-
-const JWT_SECRET_KEY = getEnv('JWT_SECRET_KEY');
+import getUser from '#src/lib/helpers/getUser.js';
 
 export default async function getCredentials(req, res) {
   const { jwt } = req.body;
@@ -16,43 +11,21 @@ export default async function getCredentials(req, res) {
     });
   }
 
-  try {
-    await connectDB();
+  // Solve token and try to get user
+  const user = await getUser(jwt);
 
-    // Verify jwt token and return user data if jwt is valid
-    return jsonwebtoken.verify(jwt, JWT_SECRET_KEY, async (err, decoded) => {
-      if (!err) {
-        const user = await User.findOne({ username: decoded.username });
-
-        // If user doesn't exist
-        if (!user) {
-          return res.send({
-            status: 400,
-            message: 'User is not found!',
-          });
-        }
-
-        // If user exists return user data
-        return res.send({
-          status: 200,
-          message: 'User found.',
-          data: {
-            username: user.username,
-            email: user.email,
-            activation: user.activation.status,
-          },
-        });
-      } else {
-        return res.send({
-          status: 400,
-          message: err.message,
-        });
-      }
-    });
-  } catch (error) {
+  // If user is not found
+  if (user.status !== true) {
     return res.send({
-      status: 500,
-      message: error.message,
+      status: 400,
+      message: user.message,
     });
   }
+
+  // Return user data
+  return res.send({
+    status: 200,
+    message: user.message,
+    data: user.data,
+  });
 }
