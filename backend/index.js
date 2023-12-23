@@ -3,6 +3,7 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import authRoute from '#src/routes/auth.js';
 import verificationRoute from '#src/routes/verification.js';
+import productsRoute from '#src/routes/products.js';
 
 // App configs
 const app = express();
@@ -19,6 +20,7 @@ app.use(
 // Routes
 app.use('/auth', authRoute);
 app.use('/verification', verificationRoute);
+app.use('/products', productsRoute);
 
 app.get('*', (req, res) => {
   res.send({ status: 404, message: 'Requested resource not found' });
