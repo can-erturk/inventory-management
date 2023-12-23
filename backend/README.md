@@ -8,11 +8,11 @@ Only endpoints and their parameters are specified in this reference. You can try
 
 ## Contents of this file
 
-| Route          | Service           |
-| :------------- | :---------------- |
-| `auth`         | Authentication    |
-| `verification` | User verification |
-| `products`     | Inventory         |
+| Route          | Service                                             |
+| :------------- | :-------------------------------------------------- |
+| `auth`         | [Authentication](#auth-route-endpoints)             |
+| `verification` | [Email verification](#verification-route-endpoints) |
+| `products`     | [Inventory](#products-route-endpoints)              |
 
 <br>
 
