@@ -1,4 +1,3 @@
-import { emailRegex } from '#src/lib/helpers/regex.js';
 import emailSender from '#src/lib/helpers/emailSender.js';
 import VerificationMail from '#src/lib/templates/verificationMail.js';
 import verificationURL from './helpers/verificationURL.js';
@@ -7,14 +6,6 @@ import setVerificationKey from './helpers/setVerificationKey.js';
 
 export default async function sendEmail(req, res) {
   const { email, callbackUrl } = req.query;
-
-  // Check if email is provided and valid
-  if (!email || !emailRegex.test(email)) {
-    return res.send({
-      status: 400,
-      message: 'Email is required.',
-    });
-  }
 
   // Check if email is already verified
   const isVerified = await checkVerification(email);

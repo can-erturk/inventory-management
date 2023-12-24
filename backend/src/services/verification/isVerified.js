@@ -3,14 +3,6 @@ import checkVerification from './helpers/checkVerification.js';
 export default async function isVerified(req, res) {
   const { email } = req.query;
 
-  // Check if email is provided
-  if (!email) {
-    return res.send({
-      status: 400,
-      message: 'Email is required.',
-    });
-  }
-
   // Check if email is verified
   const isVerified = await checkVerification(email);
 
