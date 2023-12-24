@@ -1,8 +1,14 @@
+import ReduxProvider from '@/lib/providers/ReduxProvider'
+import LayoutProvider from '@/lib/providers/LayoutProvider'
+import RouterProvider from '@/lib/providers/RouterProvider'
+
 function App() {
   return (
-    <>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-    </>
+    <ReduxProvider>
+      <LayoutProvider>
+        <RouterProvider />
+      </LayoutProvider>
+    </ReduxProvider>
   )
 }
 

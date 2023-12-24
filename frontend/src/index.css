@@ -1,3 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+@layer base {
+  html {
+    @apply h-full overflow-x-hidden;
+  }
+
+  body {
+    @apply min-h-full overflow-x-hidden text-[rgb(29,29,29)];
+  }
+
+  #root {
+    @apply min-h-screen flex flex-col bg-darken;
+  }
+
+  #root #content {
+    @apply flex-grow pt-16 max-lg:pt-14;
+  }
+
+  #root * {
+    @apply flex-shrink-0;
+  }
+}
+
+@layer utilities {
+  .container {
+    @apply mx-auto lg:px-12 max-lg:px-4 max-w-screen-lg;
+  }
+}
+
+@layer components {
+  .navlink {
+    @apply flex items-center gap-2 text-sm font-medium py-2 px-3 h-full max-lg:h-max border-b-2 border-transparent uppercase transition-all;
+  }
+
+  .navlink:hover {
+    @apply bg-zinc-100;
+  }
+
+  .navlink.active {
+    @apply opacity-100 lg:border-primary border-opacity-60 text-primary;
+  }
+
+  .navlink.active:hover {
+    @apply bg-transparent;
+  }
+
+  .mobile-sidebar {
+    @apply lg:hidden max-lg:flex fixed -right-full top-0 bg-[rgba(255,255,255,0.9)] backdrop-blur-sm h-full flex-col z-[150] w-full max-w-[15rem] justify-center items-start p-3 transition-all;
+  }
+
+  .mobile-sidebar a {
+    @apply w-full py-3;
+  }
+
+  .mobile-sidebar.sidebar-show {
+    @apply right-0;
+  }
+
+  .mobile-sidebar .sidebar-close {
+    @apply lg:hidden absolute top-3 right-3 px-4 py-3 cursor-pointer text-lighten;
+  }
+
+  .sidebar-backdrop {
+    @apply lg:hidden bg-[rgba(48,48,48,0.45)] fixed top-0 left-0 right-0 w-[100vw] h-[100vh] z-[140] transition-opacity opacity-0 pointer-events-none;
+  }
+
+  .mobile-sidebar.sidebar-show + .sidebar-backdrop {
+    @apply lg:hidden pointer-events-auto opacity-100;
+  }
+}
