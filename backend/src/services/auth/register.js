@@ -1,5 +1,4 @@
 import bcrypt from 'bcryptjs';
-import createToken from '#src/lib/helpers/createToken.js';
 import connectDB from '#src/lib/mongodb/connectDB.js';
 import User from '#src/lib/mongodb/models/User.model.js';
 
@@ -51,7 +50,6 @@ export default async function register(req, res) {
     return res.send({
       status: 200,
       message: 'User created successfully.',
-      jwt: createToken(user),
     });
   } catch (error) {
     return res.send({
