@@ -44,6 +44,15 @@ export default async function login(req, res) {
       });
     }
 
+    // Check if user is verified
+    if (!isUserExists.activation.status) {
+      return res.send({
+        status: 401,
+        type: 'not-verified',
+        message: 'You must verify your email address.',
+      });
+    }
+
     // If password is correct
     return res.send({
       status: 200,
