@@ -50,6 +50,9 @@ export default async function login(req, res) {
         status: 401,
         type: 'not-verified',
         message: 'You must verify your email address.',
+        data: {
+          email: isUserExists.email,
+        },
       });
     }
 
