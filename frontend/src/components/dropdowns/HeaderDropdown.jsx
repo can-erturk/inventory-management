@@ -1,5 +1,6 @@
 import { IoEllipsisVerticalOutline, IoLogOutOutline } from 'react-icons/io5'
 import { useState, useRef, useEffect } from 'react'
+import logout from '@/lib/helpers/logout'
 
 function HeaderDropdown() {
   const buttonRef = useRef(null)
@@ -41,7 +42,10 @@ function HeaderDropdown() {
           className="absolute -bottom-2 translate-y-full right-0 w-40 py-1 bg-default border border-default rounded shadow-lg text-sm"
           ref={dropdownRef}
         >
-          <button className="w-full text-left px-4 py-2 hover:bg-zinc-100">
+          <button
+            className="w-full text-left px-4 py-2 hover:bg-zinc-100"
+            onClick={logout}
+          >
             <IoLogOutOutline size={18} className="inline-block -mt-px mr-2" />
             <span>Logout</span>
           </button>
