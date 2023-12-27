@@ -13,8 +13,8 @@ export default async function checkJwt(jwt) {
     jwt,
   })
 
-  // If the JWT is not valid, remove it from the store
-  if (response.data.status !== 200) {
+  // If the JWT is not valid or the user is not activated, logout
+  if (response.data.status !== 200 || response.data.data.activation === false) {
     return logout()
   }
 
