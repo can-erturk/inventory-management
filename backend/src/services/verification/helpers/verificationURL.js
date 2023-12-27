@@ -1,7 +1,7 @@
 import getEnv from '#src/lib/helpers/getEnv.js';
 import { sha256 } from '#src/lib/helpers/crypter.js';
 
-const baseUrl = getEnv('BASE_URL');
+const frontendUrl = getEnv('FRONTEND_BASE_URL');
 
 export default function verificationURL(email, callbackUrl) {
   const key = sha256(email);
@@ -13,5 +13,5 @@ export default function verificationURL(email, callbackUrl) {
     param.append('callbackUrl', callbackUrl);
   }
 
-  return new URL('/verification/verify-email?' + param, baseUrl);
+  return new URL('/verify-email?' + param, frontendUrl);
 }
