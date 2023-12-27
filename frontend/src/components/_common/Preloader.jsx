@@ -3,7 +3,7 @@ function Preloader({ className }) {
     <div role="status" className={className}>
       <svg
         aria-hidden="true"
-        class="w-10 h-10 text-gray-300 animate-spin  fill-gray-400"
+        className="w-10 h-10 text-gray-300 animate-spin  fill-gray-400"
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -17,7 +17,7 @@ function Preloader({ className }) {
           fill="currentFill"
         />
       </svg>
-      <span class="sr-only">Loading...</span>
+      <span className="sr-only">Loading...</span>
     </div>
   )
 }
