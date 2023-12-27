@@ -3,7 +3,7 @@ import login from '#src/services/auth/login.js';
 import register from '#src/services/auth/register.js';
 import getCredentials from '#src/services/auth/getCredentials.js';
 import checkEmail from '#src/middlewares/checkEmail.js';
-import isUserExist from '#src/services/auth/isUserExist';
+import isUserExist from '#src/services/auth/isUserExist.js';
 
 const router = express.Router();
 
