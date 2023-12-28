@@ -20,7 +20,8 @@ const userSchema = new Schema(
       required: true,
       default: {
         status: false,
-        code: null,
+        key: null,
+        keyExpiresAt: null,
       },
     },
   },

@@ -1,17 +1,34 @@
+import connectDB from '#src/lib/mongodb/connectDB.js';
+import User from '#src/lib/mongodb/models/User.model.js';
 import getEnv from '#src/lib/helpers/getEnv.js';
-import { sha256 } from '#src/lib/helpers/crypter.js';
 
 const frontendUrl = getEnv('FRONTEND_BASE_URL');
 
-export default function verificationURL(email, callbackUrl) {
-  const key = sha256(email);
+export default async function verificationURL(email) {
+  try {
+    await connectDB();
 
-  let param = new URLSearchParams();
-  param.append('key', key);
+    // Get verification key from db
+    const { activation } = await User.findOne({ email }, 'activation.key');
 
-  if (callbackUrl && callbackUrl.length > 0) {
-    param.append('callbackUrl', callbackUrl);
+    // If there is no key, return error
+    if (!activation.key) {
+      return {
+        status: 400,
+        message: 'Verification key not found.',
+      };
+    }
+
+    // Return verification url
+    return {
+      status: 200,
+      message: 'Verification URL generated.',
+      url: `${frontendUrl}/verify-email?key=${activation.key}`,
+    };
+  } catch (error) {
+    return {
+      status: 500,
+      message: 'Something went wrong while generating verification URL.',
+    };
   }
-
-  return new URL('/verify-email?' + param, frontendUrl);
 }

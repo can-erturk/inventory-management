@@ -8,7 +8,8 @@ export default async function checkVerification(email) {
 
     return {
       status: user?.activation.status,
-      key: user?.activation.code,
+      key: user?.activation.key,
+      keyExpiresAt: user?.activation.keyExpiresAt,
     };
   } catch (error) {
     return {

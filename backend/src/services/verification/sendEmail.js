@@ -5,7 +5,7 @@ import checkVerification from './helpers/checkVerification.js';
 import setVerificationKey from './helpers/setVerificationKey.js';
 
 export default async function sendEmail(req, res) {
-  const { email, callbackUrl } = req.query;
+  const { email } = req.query;
 
   // Check if email is already verified
   const isVerified = await checkVerification(email);
@@ -17,8 +17,8 @@ export default async function sendEmail(req, res) {
     });
   }
 
-  // Set verification key if not already set
-  if (isVerified.key === null) {
+  // Set verification key if not already set or expired
+  if (isVerified.key === null || isVerified.keyExpiresAt < new Date()) {
     const setKey = await setVerificationKey(email);
 
     if (setKey.status !== true) {
@@ -29,8 +29,18 @@ export default async function sendEmail(req, res) {
     }
   }
 
+  // Generate verification URL
+  const verifyLink = await verificationURL(email);
+
+  if (verifyLink.status !== 200) {
+    return res.send({
+      status: 500,
+      message: 'Something went wrong while generating verification URL.',
+    });
+  }
+
   // Send verification email
-  const html = VerificationMail(verificationURL(email, callbackUrl));
+  const html = VerificationMail(verifyLink.url);
   const sent = await emailSender(email, 'Email Verification', html);
 
   // Check if email is sent successfully

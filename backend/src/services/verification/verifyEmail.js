@@ -2,7 +2,7 @@ import connectDB from '#src/lib/mongodb/connectDB.js';
 import User from '#src/lib/mongodb/models/User.model.js';
 
 export default async function verifyEmail(req, res) {
-  const { key, callbackUrl } = req.query;
+  const { key } = req.query;
 
   // Check if key is provided
   if (!key) {
@@ -14,13 +14,13 @@ export default async function verifyEmail(req, res) {
 
   try {
     await connectDB();
-    const user = await User.findOne({ 'activation.code': key });
+    const user = await User.findOne({ 'activation.key': key });
 
     // Check if user exists
     if (!user) {
       return res.send({
         status: 400,
-        message: 'User not found.',
+        message: 'Verification key is invalid.',
       });
     }
 
@@ -34,18 +34,14 @@ export default async function verifyEmail(req, res) {
 
     // Update user activation status
     await User.updateOne(
-      { 'activation.code': key },
+      { 'activation.key': key },
       { 'activation.status': true },
     );
 
-    if (!callbackUrl) {
-      return res.send({
-        status: 200,
-        message: 'User successfully verified.',
-      });
-    } else {
-      return res.redirect(callbackUrl);
-    }
+    return res.send({
+      status: 200,
+      message: 'User successfully verified.',
+    });
   } catch (error) {
     return res.send({
       status: 500,

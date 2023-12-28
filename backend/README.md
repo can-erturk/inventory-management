@@ -61,10 +61,9 @@ POST /auth/get-credentials
 GET /verification/send-email
 ```
 
-| Parameter     | Description   | Required |
-| :------------ | :------------ | :------- |
-| `email`       | Email address | `true`   |
-| `callbackUrl` | Callback URL  | `false`  |
+| Parameter | Description   | Required |
+| :-------- | :------------ | :------- |
+| `email`   | Email address | `true`   |
 
 ### Verify email
 
@@ -72,10 +71,9 @@ GET /verification/send-email
 GET /verification/verify-email
 ```
 
-| Parameter     | Description      | Required |
-| :------------ | :--------------- | :------- |
-| `key`         | Verification key | `true`   |
-| `callbackUrl` | Callback URL     | `false`  |
+| Parameter | Description      | Required |
+| :-------- | :--------------- | :------- |
+| `key`     | Verification key | `true`   |
 
 ### Check verification
 

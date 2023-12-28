@@ -5,9 +5,19 @@ import { sha256 } from '#src/lib/helpers/crypter.js';
 export default async function setVerificationKey(email) {
   try {
     await connectDB();
-    const key = sha256(email);
 
-    await User.updateOne({ email }, { 'activation.code': key });
+    // Generate verification key
+    const key = sha256(email + new Date());
+
+    // Set key expiration date to 1 hour
+    const expiresAt = new Date();
+    expiresAt.setHours(expiresAt.getHours() + 1);
+
+    // Set verification key
+    await User.updateOne(
+      { email },
+      { 'activation.key': key, 'activation.keyExpiresAt': expiresAt },
+    );
 
     return {
       status: true,
