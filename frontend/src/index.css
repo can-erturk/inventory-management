@@ -22,7 +22,7 @@
   }
 
   #root #content {
-    @apply flex-grow pt-16 max-lg:pt-14;
+    @apply flex-grow pt-16 max-lg:pt-14 flex flex-col;
   }
 
   #root * {
@@ -75,5 +75,9 @@
 
   .mobile-sidebar.sidebar-show + .sidebar-backdrop {
     @apply lg:hidden pointer-events-auto opacity-100;
+  }
+
+  .form-input {
+    @apply block w-full rounded-md border p-3 outline-none text-gray-900 shadow-sm sm:text-sm;
   }
 }
