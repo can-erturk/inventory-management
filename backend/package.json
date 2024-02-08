@@ -33,6 +33,11 @@
   },
   "type": "module",
   "imports": {
-    "#src/*": "./src/*"
+    "#src/*": "./src/*",
+    "#helpers/*": "./src/helpers/*",
+    "#controllers/*": "./src/app/controllers/*",
+    "#models/*": "./src/app/models/*",
+    "#views/*": "./src/app/views/*",
+    "#config/*": "./src/config/*"
   }
 }
