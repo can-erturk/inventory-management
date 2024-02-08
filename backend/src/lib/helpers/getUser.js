@@ -1,5 +1,5 @@
-import connectDB from '#src/lib/mongodb/connectDB.js';
-import User from '#src/lib/mongodb/models/User.model.js';
+import connectDB from '#config/mongodb/connectDB.js';
+import User from '#models/userModel.js';
 import solveToken from './solveToken.js';
 
 export default async function getUser(jwt) {

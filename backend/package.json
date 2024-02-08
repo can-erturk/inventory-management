@@ -34,10 +34,11 @@
   "type": "module",
   "imports": {
     "#src/*": "./src/*",
-    "#helpers/*": "./src/helpers/*",
-    "#controllers/*": "./src/app/controllers/*",
+    "#config/*": "./src/config/*",
     "#models/*": "./src/app/models/*",
     "#views/*": "./src/app/views/*",
-    "#config/*": "./src/config/*"
+    "#controllers/*": "./src/app/controllers/*",
+    "#helpers/*": "./src/lib/helpers/*",
+    "#middlewares/*": "./src/lib/middlewares/*"
   }
 }
