@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useState } from 'react'
 import DOMPurify from 'dompurify'
 import { useDispatch } from 'react-redux'
-import { setJWT } from '@/lib/stores/auth'
+import { setJWT } from '@/lib/stores/redux/auth'
 
 function Login() {
   const [formError, setFormError] = useState(null)
