@@ -1,5 +1,5 @@
-import store from '@/lib/stores/redux'
-import { setJWT } from '@/lib/stores/redux/auth'
+import store from '@redux'
+import { setJWT } from '@redux/auth'
 
 export default async function logout() {
   // Remove the JWT from the redux store
