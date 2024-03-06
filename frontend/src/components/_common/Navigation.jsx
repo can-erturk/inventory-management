@@ -11,9 +11,9 @@ function Navigation() {
         <span>Inventory</span>
       </NavLink>
 
-      <NavLink to="/postdated-products" className="navlink">
+      <NavLink to="/postdated-orders" className="navlink">
         <IoCalendarOutline size={18} className="inline-block -mt-px" />
-        <span>Postdated Products</span>
+        <span>Postdated Orders</span>
       </NavLink>
 
       <NavLink to="/share-access" className="navlink">
