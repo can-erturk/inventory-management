@@ -7,7 +7,7 @@ function Header() {
   return (
     <div
       id="header"
-      className="h-16 max-lg:h-14 border-b border-zinc-200 fixed top-0 left-0 w-full text-lighten bg-white z-[120]"
+      className="h-16 max-lg:h-14 border-b border-zinc-200 w-full text-lighten bg-white z-[120]"
     >
       <div className="container h-full flex justify-between">
         <div className="h-full flex items-center gap-4 max-lg:hidden">
