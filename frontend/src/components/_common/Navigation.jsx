@@ -1,23 +1,23 @@
-import { IoCartOutline } from 'react-icons/io5'
-import { IoCalendarOutline } from 'react-icons/io5'
+import { FaCartShopping } from 'react-icons/fa6'
 import { IoKeyOutline } from 'react-icons/io5'
+import { RxCalendar } from 'react-icons/rx'
 import { NavLink } from 'react-router-dom'
 
 function Navigation() {
   return (
     <>
       <NavLink to="/" className="navlink">
-        <IoCartOutline size={22} className="inline-block -mt-px" />
+        <FaCartShopping size={18} className="inline-block -mt-px" />
         <span>Inventory</span>
       </NavLink>
 
       <NavLink to="/postdated-orders" className="navlink">
-        <IoCalendarOutline size={18} className="inline-block -mt-px" />
+        <RxCalendar size={18} className="inline-block -mt-px" />
         <span>Postdated Orders</span>
       </NavLink>
 
       <NavLink to="/share-access" className="navlink">
-        <IoKeyOutline size={20} className="inline-block -mt-px" />
+        <IoKeyOutline size={18} className="inline-block -mt-px" />
         <span>Share Access</span>
       </NavLink>
     </>
