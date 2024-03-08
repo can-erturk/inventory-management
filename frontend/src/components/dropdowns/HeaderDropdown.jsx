@@ -39,7 +39,7 @@ function HeaderDropdown() {
 
       {showDropdown && (
         <div
-          className="absolute -bottom-2 translate-y-full right-0 w-40 py-1 bg-default border border-default rounded shadow-lg text-sm"
+          className="absolute -bottom-2 translate-y-full right-0 w-40 py-1 bg-default border border-default rounded-lg shadow-lg text-sm"
           ref={dropdownRef}
         >
           <button
