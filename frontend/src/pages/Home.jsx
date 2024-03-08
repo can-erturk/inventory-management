@@ -1,7 +1,9 @@
+import Breadcrumbs from '@/components/_common/Breadcrumbs'
+
 function Home() {
   return (
     <div className="container">
-      <h1>Home</h1>
+      <Breadcrumbs path={['Your Inventory']} />
     </div>
   )
 }
