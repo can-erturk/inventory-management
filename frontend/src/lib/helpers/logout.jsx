@@ -10,7 +10,7 @@ export default async function logout() {
   sessionStorage.removeItem('jwt')
 
   // Redirect the user to the home page
-  if (typeof window !== 'undefined') {
+  if (typeof window !== 'undefined' && window.location.pathname !== '/') {
     window.location.href = '/'
   }
 }
