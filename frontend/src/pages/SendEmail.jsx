@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { IoAlert } from 'react-icons/io5'
 import { FaRegEnvelope } from 'react-icons/fa'
+import { motion } from 'framer-motion'
 
 function SendEmail() {
   const [error, setError] = useState(null)
@@ -65,7 +66,12 @@ function SendEmail() {
   if (error && !loading) {
     return (
       <>
-        <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8"
+        >
           <div className="bg-white max-w-lg w-full mx-auto rounded-lg shadow-xl p-10 pb-12">
             <div className="flex items-center justify-center mx-auto w-20 h-20 rounded-full border-[3px] border-red-400">
               <IoAlert size={32} className="text-red-400" />
@@ -80,7 +86,7 @@ function SendEmail() {
               </p>
             </div>
           </div>
-        </div>
+        </motion.div>
       </>
     )
   }
@@ -90,7 +96,12 @@ function SendEmail() {
   if (!loading && !error) {
     return (
       <>
-        <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8"
+        >
           <div className="bg-white max-w-lg w-full mx-auto rounded-lg shadow-xl p-10 pb-12">
             <div className="flex items-center justify-center mx-auto w-20 h-20 rounded-full border-[3px] border-blue-400 bg-blue-50">
               <FaRegEnvelope size={32} className="text-blue-400" />
@@ -112,7 +123,7 @@ function SendEmail() {
               </p>
             </div>
           </div>
-        </div>
+        </motion.div>
       </>
     )
   }

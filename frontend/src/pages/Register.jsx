@@ -1,5 +1,7 @@
 import axios from 'axios'
 import { useState } from 'react'
+import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 
 function Register() {
   const [formError, setFormError] = useState(null)
@@ -33,7 +35,12 @@ function Register() {
 
   return (
     <>
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8"
+      >
         <div className="bg-white max-w-md w-full mx-auto rounded-lg shadow-xl p-14 pb-16">
           <h2 className="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Create account
@@ -114,16 +121,16 @@ function Register() {
 
             <p className="mt-10 text-center text-sm text-gray-500">
               Already have an account?&nbsp;
-              <a
-                href="/"
+              <Link
+                to="/"
                 className="font-semibold leading-6 text-blue-500 hover:text-blue-400"
               >
                 Login
-              </a>
+              </Link>
             </p>
           </div>
         </div>
-      </div>
+      </motion.div>
     </>
   )
 }

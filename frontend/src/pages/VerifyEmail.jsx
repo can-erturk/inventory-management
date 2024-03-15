@@ -3,6 +3,8 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { IoAlert } from 'react-icons/io5'
 import { FaCheck } from 'react-icons/fa6'
+import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 
 function VerifyEmail() {
   const [info, setInfo] = useState(null)
@@ -49,7 +51,12 @@ function VerifyEmail() {
   if (info && !loading) {
     return (
       <>
-        <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8"
+        >
           <div className="bg-white max-w-lg w-full mx-auto rounded-lg shadow-xl p-10 pb-12">
             <div className="flex items-center justify-center mx-auto w-20 h-20 rounded-full border-[3px] border-blue-400 bg-blue-50">
               <IoAlert size={32} className="text-blue-400" />
@@ -75,7 +82,7 @@ function VerifyEmail() {
               </a>
             </div>
           </div>
-        </div>
+        </motion.div>
       </>
     )
   }
@@ -85,7 +92,12 @@ function VerifyEmail() {
   if (!loading && !info) {
     return (
       <>
-        <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8"
+        >
           <div className="bg-white max-w-lg w-full mx-auto rounded-lg shadow-xl p-10 pb-12">
             <div className="flex items-center justify-center mx-auto w-20 h-20 rounded-full border-[3px] border-green-500 bg-green-50">
               <FaCheck size={32} className="text-green-500" />
@@ -103,15 +115,15 @@ function VerifyEmail() {
             </div>
 
             <div className="mt-8">
-              <a
-                href="/"
+              <Link
+                to="/"
                 className="max-w-max mx-auto flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-500 hover:bg-green-600 md:py-2 md:text-base md:px-6"
               >
                 Login now
-              </a>
+              </Link>
             </div>
           </div>
-        </div>
+        </motion.div>
       </>
     )
   }
