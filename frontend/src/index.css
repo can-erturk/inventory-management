@@ -6,6 +6,7 @@
 
 * {
   font-family: 'Poppins', sans-serif;
+  outline: none;
 }
 
 @layer base {
@@ -14,7 +15,7 @@
   }
 
   body {
-    @apply min-h-full overflow-x-hidden text-[rgb(29,29,29)];
+    @apply min-h-full text-default;
   }
 
   #root {
@@ -22,7 +23,7 @@
   }
 
   #root #content {
-    @apply flex-grow pt-16 max-lg:pt-14 flex flex-col;
+    @apply flex-grow flex flex-col max-lg:pt-16;
   }
 
   #root * {
@@ -32,21 +33,21 @@
 
 @layer utilities {
   .container {
-    @apply mx-auto lg:px-12 max-lg:px-4 max-w-screen-lg;
+    @apply mx-auto lg:px-24 max-lg:px-4 max-w-screen-xl;
   }
 }
 
 @layer components {
   .navlink {
-    @apply flex items-center gap-2 text-sm font-medium py-2 px-3 h-full max-lg:h-max border-b-2 border-transparent uppercase transition-all;
+    @apply flex items-center gap-2 text-sm font-medium py-2 px-1 h-full border-b-2 border-transparent max-lg:h-max uppercase transition-all text-default opacity-50 max-lg:opacity-70;
   }
 
   .navlink:hover {
-    @apply bg-zinc-100;
+    @apply opacity-70;
   }
 
   .navlink.active {
-    @apply opacity-100 lg:border-primary border-opacity-60 text-primary;
+    @apply opacity-100 lg:border-primary text-primary;
   }
 
   .navlink.active:hover {
@@ -54,7 +55,7 @@
   }
 
   .mobile-sidebar {
-    @apply lg:hidden max-lg:flex fixed -right-full top-0 bg-[rgba(255,255,255,0.9)] backdrop-blur-sm h-full flex-col z-[150] w-full max-w-[15rem] justify-center items-start p-3 transition-all;
+    @apply lg:hidden max-lg:flex fixed -right-full top-0 bg-default h-full flex-col z-[150] w-full max-w-[15rem] justify-between pt-20 items-start p-4 transition-all shadow-2xl;
   }
 
   .mobile-sidebar a {
@@ -70,7 +71,7 @@
   }
 
   .sidebar-backdrop {
-    @apply lg:hidden bg-[rgba(48,48,48,0.45)] fixed top-0 left-0 right-0 w-[100vw] h-[100vh] z-[140] transition-opacity opacity-0 pointer-events-none;
+    @apply lg:hidden bg-[rgba(48,48,48,0.6)] fixed top-0 left-0 right-0 w-[100vw] h-[100vh] z-[140] transition-opacity opacity-0 pointer-events-none;
   }
 
   .mobile-sidebar.sidebar-show + .sidebar-backdrop {
