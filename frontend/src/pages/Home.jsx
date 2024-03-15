@@ -1,7 +1,10 @@
 import Breadcrumbs from '@/components/_common/Breadcrumbs'
 import { motion } from 'framer-motion'
+import useDocumentTitle from '@/lib/hooks/useDocumentTitle'
 
 function Home() {
+  useDocumentTitle('Your Products | Inventory Management System')
+
   return (
     <motion.div
       initial={{ opacity: 0 }}

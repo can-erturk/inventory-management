@@ -1,11 +1,14 @@
 import NotFoundSvg from '@/assets/NotFoundSvg'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import useDocumentTitle from '@/lib/hooks/useDocumentTitle'
 
 // This component is from:
 // https://tailwindcomponents.com/component/tailwind-css-404-page-not-found-with-illustration
 
 function NotFound() {
+  useDocumentTitle('Page Not Found | Inventory Management System')
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
