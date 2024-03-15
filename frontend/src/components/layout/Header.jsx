@@ -9,7 +9,7 @@ function Header() {
   return (
     <>
       {/* Header */}
-      <div className="w-full bg-default h-20 max-lg:h-16 max-lg:fixed max-lg:border-b max-lg:border-zinc-200">
+      <div className="w-full bg-default z-[120] h-20 max-lg:h-16 max-lg:fixed max-lg:border-b max-lg:border-zinc-200">
         <div className="container h-full flex items-center justify-between">
           <Logo />
 
