@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import { setJWT } from '@redux/auth'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 function Login() {
   const [formError, setFormError] = useState(null)
@@ -43,6 +44,9 @@ function Login() {
 
     if (response.data.status === 200) {
       dispatch(setJWT(response.data.jwt))
+
+      // Show a toast message
+      toast.success('You have been logged in.')
 
       // If the user wants to remember the login, save the JWT to localStorage.
       // Otherwise, save the JWT to sessionStorage
