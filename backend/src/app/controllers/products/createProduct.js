@@ -14,6 +14,11 @@ export default async function createProduct(req, res) {
     });
   }
 
+  // Remove id from product data
+  if (product?.id) {
+    delete product.id;
+  }
+
   // Solve jwt and get user id as access variable
   const { id: access } = await solveToken(jwt);
 
