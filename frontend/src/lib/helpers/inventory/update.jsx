@@ -22,7 +22,7 @@ export const updateProduct = async (product_id, updated_product) => {
       return true
     }
   } catch (error) {
-    toast.error(data.message)
+    toast.error(error.message)
     return false
   }
 }

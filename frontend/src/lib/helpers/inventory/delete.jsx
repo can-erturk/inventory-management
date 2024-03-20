@@ -21,7 +21,7 @@ export const deleteProduct = async (product_id) => {
       return true
     }
   } catch (error) {
-    toast.error(data.message)
+    toast.error(error.message)
     return false
   }
 }

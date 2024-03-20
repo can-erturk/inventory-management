@@ -21,7 +21,7 @@ export const createProduct = async (product) => {
       return true
     }
   } catch (error) {
-    toast.error(data.message)
+    toast.error(error.message)
     return false
   }
 }
