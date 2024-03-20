@@ -11,7 +11,7 @@ export default async function getProducts(req, res) {
   try {
     await connectDB();
     const getData = await Product.find({ access }).select(
-      '-_id -access -__v -updatedAt -createdAt',
+      '-access -__v -updatedAt -createdAt',
     );
 
     // Check if products exist
