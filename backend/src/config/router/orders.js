@@ -10,7 +10,7 @@ const app = express();
 
 app.use(checkJwt);
 
-app.post('/get', checkOrderID, (req, res) => {
+app.post('/get', (req, res) => {
   return getOrders(req, res);
 });
 
