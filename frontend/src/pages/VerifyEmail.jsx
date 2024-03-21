@@ -55,9 +55,9 @@ function VerifyEmail() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8"
+          className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 max-md:max-w-full max-md:!p-0 max-md:bg-default"
         >
-          <div className="bg-white max-w-lg w-full mx-auto rounded-lg shadow-xl p-10 pb-12">
+          <div className="bg-white max-w-lg w-full mx-auto rounded-xl md:shadow-xl p-12 max-md:py-10 max-md:px-6 md:border md:border-zinc-200">
             <div className="flex items-center justify-center mx-auto w-20 h-20 rounded-full border-[3px] border-blue-400 bg-blue-50">
               <IoAlert size={32} className="text-blue-400" />
             </div>
@@ -74,12 +74,12 @@ function VerifyEmail() {
             </div>
 
             <div className="mt-8">
-              <a
-                href="/"
-                className="max-w-max mx-auto flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 md:py-2 md:text-base md:px-6"
+              <Link
+                to="/"
+                className="max-w-max mx-auto flex items-center justify-center px-8 py-2 border border-transparent text-sm font-medium rounded-xl text-white bg-blue-500 hover:bg-blue-600 md:py-2 md:text-base md:px-6"
               >
                 Go to homepage
-              </a>
+              </Link>
             </div>
           </div>
         </motion.div>
@@ -96,9 +96,9 @@ function VerifyEmail() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8"
+          className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 max-md:max-w-full max-md:!p-0 max-md:bg-default"
         >
-          <div className="bg-white max-w-lg w-full mx-auto rounded-lg shadow-xl p-10 pb-12">
+          <div className="bg-white max-w-lg w-full mx-auto rounded-xl md:shadow-xl p-12 max-md:py-10 max-md:px-6 md:border md:border-zinc-200">
             <div className="flex items-center justify-center mx-auto w-20 h-20 rounded-full border-[3px] border-green-500 bg-green-50">
               <FaCheck size={32} className="text-green-500" />
             </div>
@@ -117,7 +117,7 @@ function VerifyEmail() {
             <div className="mt-8">
               <Link
                 to="/"
-                className="max-w-max mx-auto flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-500 hover:bg-green-600 md:py-2 md:text-base md:px-6"
+                className="max-w-max mx-auto flex items-center justify-center px-8 py-2 border border-transparent text-sm font-medium rounded-xl text-white bg-green-500 hover:bg-green-600 md:py-2 md:text-base md:px-6"
               >
                 Login now
               </Link>

@@ -23,7 +23,7 @@ input[type='number'] {
 
 @layer base {
   html {
-    @apply h-full overflow-x-hidden;
+    @apply h-full overflow-x-hidden overflow-y-scroll;
   }
 
   body {
@@ -109,7 +109,7 @@ input[type='number'] {
   }
 
   .form-input {
-    @apply block w-full rounded-md border p-3 text-gray-900 shadow-sm sm:text-sm;
+    @apply block w-full rounded-xl border border-zinc-200 p-3 text-gray-900 sm:text-sm;
   }
 
   .table-col {

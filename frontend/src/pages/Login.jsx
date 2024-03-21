@@ -68,9 +68,9 @@ function Login() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8"
+        className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 max-md:max-w-full max-md:!p-0 max-md:bg-default"
       >
-        <div className="bg-white max-w-md w-full mx-auto rounded-lg shadow-xl p-14 pb-16">
+        <div className="bg-white max-w-md w-full max-md:max-w-full mx-auto md:rounded-xl md:border md:border-zinc-200 md:shadow-xl p-14 pb-12 max-md:p-10 max-md:pb-12">
           <h2 className="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Login to your account
           </h2>
@@ -78,7 +78,7 @@ function Login() {
           {formError && (
             <div className="mt-6 text-center text-sm text-gray-500">
               <div
-                className="p-3 font-medium border border-red-200 rounded-md bg-red-50 text-red-400"
+                className="p-3 font-medium border border-red-200 rounded-xl bg-red-50 text-red-400"
                 dangerouslySetInnerHTML={{ __html: formError }}
               ></div>
             </div>
@@ -96,7 +96,7 @@ function Login() {
                     name="user"
                     type="text"
                     required
-                    className="block w-full rounded-md border p-3 outline-none text-gray-900 shadow-sm sm:text-sm"
+                    className="form-input"
                   />
                 </div>
               </div>
@@ -121,7 +121,7 @@ function Login() {
                 </div>
               </div>
 
-              <div className="flex items-center">
+              <div className="flex items-center !mt-3">
                 <input
                   id="remember-checkbox"
                   type="checkbox"
@@ -140,7 +140,7 @@ function Login() {
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="flex w-full justify-center rounded-md bg-blue-500 px-3 py-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-400"
+                  className="flex w-full justify-center rounded-xl bg-blue-500 px-3 py-2.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-400"
                 >
                   Sign in
                 </button>

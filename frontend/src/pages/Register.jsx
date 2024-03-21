@@ -1,11 +1,9 @@
 import axios from 'axios'
-import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 function Register() {
-  const [formError, setFormError] = useState(null)
-
   const apiURL = import.meta.env.VITE_APP_API_URL
 
   const handleSubmit = async (e) => {
@@ -21,15 +19,11 @@ function Register() {
       password,
     })
 
-    // const data = await response.json()
-
     if (response.data.status !== 200) {
-      return setFormError(response.data.message)
+      toast.error(response.data.message)
+      return
     }
 
-    console.log(response.data)
-
-    setFormError(null)
     return (window.location.href = '/send-email?email=' + email)
   }
 
@@ -39,20 +33,12 @@ function Register() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8"
+        className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 max-md:max-w-full max-md:!p-0 max-md:bg-default"
       >
-        <div className="bg-white max-w-md w-full mx-auto rounded-lg shadow-xl p-14 pb-16">
+        <div className="bg-white max-w-md w-full mx-auto md:rounded-xl md:border md:border-zinc-200 md:shadow-xl p-14 pb-12 max-md:p-10 max-md:pb-12">
           <h2 className="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Create account
           </h2>
-
-          {formError && (
-            <div className="mt-6 text-center text-sm text-gray-500">
-              <p className="p-3 font-medium border border-red-200 rounded-md bg-red-50 text-red-400">
-                {formError}
-              </p>
-            </div>
-          )}
 
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <form className="space-y-6" onSubmit={handleSubmit}>
@@ -69,7 +55,7 @@ function Register() {
                     name="username"
                     type="text"
                     required
-                    className="block w-full rounded-md border p-3 outline-none text-gray-900 shadow-sm sm:text-sm"
+                    className="form-input"
                   />
                 </div>
               </div>
@@ -84,7 +70,7 @@ function Register() {
                     name="email"
                     type="email"
                     required
-                    className="block w-full rounded-md border p-3 outline-none text-gray-900 shadow-sm sm:text-sm"
+                    className="form-input"
                   />
                 </div>
               </div>
@@ -104,7 +90,7 @@ function Register() {
                     name="password"
                     type="password"
                     required
-                    className="block w-full rounded-md border p-3 outline-none text-gray-900 shadow-sm sm:text-sm"
+                    className="form-input"
                   />
                 </div>
               </div>
@@ -112,7 +98,7 @@ function Register() {
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="flex w-full justify-center rounded-md bg-blue-500 px-3 py-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-400"
+                  className="flex w-full justify-center rounded-xl bg-blue-500 px-3 py-2.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-400"
                 >
                   Sign up
                 </button>

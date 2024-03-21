@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { IoAlert } from 'react-icons/io5'
 import { FaRegEnvelope } from 'react-icons/fa'
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 
 function SendEmail() {
   const [error, setError] = useState(null)
@@ -70,20 +71,31 @@ function SendEmail() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8"
+          className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 max-md:max-w-full max-md:!p-0 max-md:bg-default"
         >
-          <div className="bg-white max-w-lg w-full mx-auto rounded-lg shadow-xl p-10 pb-12">
+          <div className="bg-white max-w-lg w-full mx-auto md:rounded-xl md:shadow-xl p-12 max-md:py-10 max-md:px-6 md:border md:border-zinc-200">
             <div className="flex items-center justify-center mx-auto w-20 h-20 rounded-full border-[3px] border-red-400">
               <IoAlert size={32} className="text-red-400" />
             </div>
+
             <h2 className="text-center text-3xl font-medium mt-6 leading-9 tracking-tight text-red-500">
               {error}
             </h2>
+
             <div className="mt-6 sm:mx-auto sm:w-full">
               <p className="text-center">
                 If you think this is a mistake, please contact with the admin or
                 try again later.
               </p>
+            </div>
+
+            <div className="flex justify-center mt-5">
+              <Link
+                to="/register"
+                className="inline-block text-primary underline text-sm rounded-xl p-2"
+              >
+                Go back to register
+              </Link>
             </div>
           </div>
         </motion.div>
@@ -100,9 +112,9 @@ function SendEmail() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8"
+          className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 max-md:max-w-full max-md:!p-0 max-md:bg-default"
         >
-          <div className="bg-white max-w-lg w-full mx-auto rounded-lg shadow-xl p-10 pb-12">
+          <div className="bg-white max-w-lg w-full mx-auto md:rounded-xl md:shadow-xl p-12 max-md:py-10 max-md:px-6 md:border md:border-zinc-200">
             <div className="flex items-center justify-center mx-auto w-20 h-20 rounded-full border-[3px] border-blue-400 bg-blue-50">
               <FaRegEnvelope size={32} className="text-blue-400" />
             </div>
