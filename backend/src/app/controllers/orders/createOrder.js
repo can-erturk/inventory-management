@@ -14,6 +14,11 @@ export default async function createOrder(req, res) {
     });
   }
 
+  // Remove id from order data
+  if (order?.id) {
+    delete order.id;
+  }
+
   // Solve jwt and get user id as access variable
   const { id: access } = await solveToken(jwt);
 

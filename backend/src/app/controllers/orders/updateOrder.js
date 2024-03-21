@@ -14,11 +14,16 @@ export default async function updateOrder(req, res) {
     });
   }
 
+  // Remove id from updated order data
+  if (updated_order?.id) {
+    delete updated_order.id;
+  }
+
   // Check if updated order is valid
-  if (updated_order.id || updated_order.access) {
+  if (updated_order.access) {
     return res.send({
       status: 400,
-      message: 'ID cannot be updated!',
+      message: 'Access ID cannot be updated!',
     });
   }
 
