@@ -23,7 +23,9 @@ function Home() {
       }
 
       // Set the table data
-      setTableData(products?.data)
+      if (products?.data) {
+        setTableData(products.data)
+      }
     })()
   }, [])
 
