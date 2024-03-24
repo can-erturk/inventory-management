@@ -14,6 +14,14 @@ export default async function createOrder(req, res) {
     });
   }
 
+  // Compare order date with current date
+  if (new Date(order.orderDate) < new Date()) {
+    return res.send({
+      status: 400,
+      message: 'Order date must be in the future.',
+    });
+  }
+
   // Remove id from order data
   if (order?.id) {
     delete order.id;

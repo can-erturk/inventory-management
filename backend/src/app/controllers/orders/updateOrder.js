@@ -14,6 +14,14 @@ export default async function updateOrder(req, res) {
     });
   }
 
+  // Compare order date with current date
+  if (new Date(updated_order.orderDate) < new Date()) {
+    return res.send({
+      status: 400,
+      message: 'Order date must be in the future.',
+    });
+  }
+
   // Remove id from updated order data
   if (updated_order?.id) {
     delete updated_order.id;
