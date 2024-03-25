@@ -40,6 +40,7 @@
     "#views/*": "./src/app/views/*",
     "#controllers/*": "./src/app/controllers/*",
     "#helpers/*": "./src/lib/helpers/*",
-    "#middlewares/*": "./src/lib/middlewares/*"
+    "#middlewares/*": "./src/lib/middlewares/*",
+    "#services/*": "./src/lib/services/*"
   }
 }
