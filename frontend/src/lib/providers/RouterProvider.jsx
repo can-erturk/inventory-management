@@ -6,6 +6,7 @@ import SendEmail from '@/pages/SendEmail'
 import NotFound from '@/pages/NotFound'
 import Home from '@/pages/Home'
 import VerifyEmail from '@/pages/VerifyEmail'
+import Orders from '@/pages/Orders'
 
 function RouterProvider() {
   const { jwt } = useSelector((state) => state.auth)
@@ -14,6 +15,7 @@ function RouterProvider() {
     return (
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/postdated-orders" element={<Orders />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     )
