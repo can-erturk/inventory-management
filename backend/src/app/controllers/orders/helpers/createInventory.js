@@ -18,6 +18,9 @@ export default async function createInventory(req, res, access) {
     await connectDB();
     await Order.create({ access, orders: [orderData] });
 
+    // Schedule order
+    await scheduleOrder(access, orderData.id, orderData.orderDate);
+
     return res.send({
       status: 200,
       message: 'Inventory created and order added successfully.',

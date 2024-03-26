@@ -1,6 +1,7 @@
 import connectDB from '#config/mongodb/connectDB.js';
 import Order from '#models/orderModel.js';
 import solveToken from '#helpers/solveToken.js';
+import { cancelOrder } from '#services/scheduleOrders.js';
 
 export default async function deleteOrder(req, res) {
   const { jwt, order_id } = req.body;
@@ -14,6 +15,8 @@ export default async function deleteOrder(req, res) {
       { access },
       { $pull: { orders: { id: order_id } } },
     );
+
+    await cancelOrder(order_id);
 
     return res.send({
       status: 200,

@@ -2,9 +2,13 @@ import connectDB from '#config/mongodb/connectDB.js';
 import Order from '#models/orderModel.js';
 import solveToken from '#helpers/solveToken.js';
 import checkOrderExist from './helpers/checkOrderExist.js';
+import { scheduleOrder } from '#services/scheduleOrders.js';
 
 export default async function updateOrder(req, res) {
   const { jwt, order_id, updated_order } = req.body;
+
+  // Solve jwt and get user id as access variable
+  const { id: access } = await solveToken(jwt);
 
   // Check if update_field and updated_value provided
   if (!updated_order) {
@@ -22,6 +26,9 @@ export default async function updateOrder(req, res) {
     });
   }
 
+  // Schedule order
+  await scheduleOrder(access, order_id, updated_order.orderDate);
+
   // Remove id from updated order data
   if (updated_order?.id) {
     delete updated_order.id;
@@ -34,9 +41,6 @@ export default async function updateOrder(req, res) {
       message: 'Access ID cannot be updated!',
     });
   }
-
-  // Solve jwt and get user id as access variable
-  const { id: access } = await solveToken(jwt);
 
   try {
     await connectDB();

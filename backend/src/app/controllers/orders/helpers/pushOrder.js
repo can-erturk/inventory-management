@@ -2,6 +2,7 @@ import { v4 } from 'uuid';
 import connectDB from '#config/mongodb/connectDB.js';
 import Order from '#models/orderModel.js';
 import checkOrderExist from './checkOrderExist.js';
+import { scheduleOrder } from '#services/scheduleOrders.js';
 
 const uuidv4 = v4;
 
@@ -29,6 +30,9 @@ export default async function pushOrder(req, res, access) {
 
     // Update order
     await Order.updateOne({ access }, { $push: { orders: orderData } });
+
+    // Schedule order
+    await scheduleOrder(access, orderData.id, orderData.orderDate);
 
     return res.send({
       status: 200,
