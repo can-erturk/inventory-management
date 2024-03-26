@@ -7,7 +7,7 @@ import { readAll } from '@/lib/helpers/orders/readAll'
 import { toast } from 'react-toastify'
 
 function Orders() {
-  useDocumentTitle('Postdated Orders | Inventory Management System')
+  useDocumentTitle('Scheduled Orders | Inventory Management System')
 
   const [tableData, setTableData] = useState([])
 

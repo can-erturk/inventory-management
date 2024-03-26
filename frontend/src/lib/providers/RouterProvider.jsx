@@ -15,7 +15,7 @@ function RouterProvider() {
     return (
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/postdated-orders" element={<Orders />} />
+        <Route path="/scheduled-orders" element={<Orders />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     )

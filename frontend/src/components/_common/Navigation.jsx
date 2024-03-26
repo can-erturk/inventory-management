@@ -10,9 +10,9 @@ function Navigation() {
         <span>Inventory</span>
       </NavLink>
 
-      <NavLink to="/postdated-orders" className="navlink">
+      <NavLink to="/scheduled-orders" className="navlink">
         <BsCalendarFill size={16} className="inline-block -mt-[2px]" />
-        <span>Postdated Orders</span>
+        <span>Scheduled Orders</span>
       </NavLink>
 
       <NavLink to="/share-access" className="navlink">
