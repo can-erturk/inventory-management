@@ -3,6 +3,10 @@ const { Schema, models } = mongoose;
 
 const orderSchema = new Schema(
   {
+    accessOrigin: {
+      type: String,
+      required: true,
+    },
     access: {
       type: Array,
       required: true,
