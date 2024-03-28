@@ -16,7 +16,11 @@ export default async function createInventory(req, res, access) {
   try {
     // Create inventory and add order
     await connectDB();
-    await Order.create({ access, orders: [orderData] });
+    await Order.create({
+      accessOrigin: access,
+      access: [access],
+      orders: [orderData],
+    });
 
     // Schedule order
     await scheduleOrder(access, orderData.id, orderData.orderDate);
