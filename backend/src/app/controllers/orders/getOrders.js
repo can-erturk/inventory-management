@@ -10,8 +10,8 @@ export default async function getOrders(req, res) {
 
   try {
     await connectDB();
-    const getData = await Order.find({ access }).select(
-      '-_id -access -__v -updatedAt -createdAt',
+    const getData = await Order.find({ access: { $in: [access] } }).select(
+      '-__v -updatedAt -createdAt',
     );
 
     // Check if orders exist
@@ -22,12 +22,26 @@ export default async function getOrders(req, res) {
       });
     }
 
-    // Check if order_id provided
-    // If provided, return only one order
-    // If not provided, return all orders
-    const data = order_id
-      ? getData[0].orders.find((order) => order.id === order_id)
-      : getData[0].orders;
+    // Create an array of orders
+    const data = [];
+
+    if (order_id) {
+      // If order_id provided, return only one order
+      getData.forEach((orderData) => {
+        orderData.orders.forEach((p) => {
+          if (p.id === order_id) {
+            data.push(p);
+          }
+        });
+      });
+    } else {
+      // If order_id not provided, return all orders
+      getData.forEach((orderData) => {
+        orderData.orders.forEach((p) => {
+          data.push(p);
+        });
+      });
+    }
 
     return res.send({
       status: 200,

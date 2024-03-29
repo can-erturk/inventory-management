@@ -10,8 +10,8 @@ export default async function getProducts(req, res) {
 
   try {
     await connectDB();
-    const getData = await Product.find({ access }).select(
-      '-access -__v -updatedAt -createdAt',
+    const getData = await Product.find({ access: { $in: [access] } }).select(
+      '-__v -updatedAt -createdAt',
     );
 
     // Check if products exist
@@ -22,12 +22,26 @@ export default async function getProducts(req, res) {
       });
     }
 
-    // Check if product_id provided
-    // If provided, return only one product
-    // If not provided, return all products
-    const data = product_id
-      ? getData[0].products.find((product) => product.id === product_id)
-      : getData[0].products;
+    // Create an array of products
+    const data = [];
+
+    if (product_id) {
+      // If product_id provided, return only one product
+      getData.forEach((productData) => {
+        productData.products.forEach((product) => {
+          if (p.id === product_id) {
+            data.push(product);
+          }
+        });
+      });
+    } else {
+      // If product_id not provided, return all products
+      getData.forEach((productData) => {
+        productData.products.forEach((product) => {
+          data.push(product);
+        });
+      });
+    }
 
     return res.send({
       status: 200,
