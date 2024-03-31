@@ -11,10 +11,7 @@ export default async function deleteOrder(req, res) {
 
   try {
     await connectDB();
-    await Order.findOneAndUpdate(
-      { access },
-      { $pull: { orders: { id: order_id } } },
-    );
+    await Order.updateMany({ access }, { $pull: { orders: { id: order_id } } });
 
     await cancelOrder(order_id);
 

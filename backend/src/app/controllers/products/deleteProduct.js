@@ -10,8 +10,8 @@ export default async function deleteProduct(req, res) {
 
   try {
     await connectDB();
-    await Product.findOneAndUpdate(
-      { access },
+    await Product.updateMany(
+      { access: { $in: [access] } },
       { $pull: { products: { id: product_id } } },
     );
 
