@@ -1,5 +1,6 @@
 import connectDB from '#config/mongodb/connectDB.js';
 import Product from '#models/productModel.js';
+import Order from '#models/orderModel.js';
 import solveToken from '#helpers/solveToken.js';
 import isAccessExist from './helpers/isAccessExist.js';
 import getUserByID from '#helpers/getUserByID.js';
@@ -19,7 +20,7 @@ export default async function shareAccess(req, res) {
   const user = await solveToken(jwt);
 
   // Check if user is owner
-  if (user.id === id) {
+  if (id === user.id) {
     return res.send({
       status: 403,
       message: 'You already have access to the inventory.',
@@ -27,7 +28,7 @@ export default async function shareAccess(req, res) {
   }
 
   // Check if user already has access
-  const checkAccess = await isAccessExist(user.id, id);
+  const checkAccess = await isAccessExist(id, user.id);
 
   if (checkAccess === true) {
     return res.send({
@@ -48,10 +49,15 @@ export default async function shareAccess(req, res) {
 
   try {
     await connectDB();
+
+    // Share access for products
     await Product.updateOne(
-      { accessOrigin: user.id },
-      { $push: { access: id } },
+      { accessOrigin: id },
+      { $push: { access: user.id } },
     );
+
+    // Share access for orders
+    await Order.updateOne({ accessOrigin: id }, { $push: { access: user.id } });
 
     return res.send({
       status: 200,

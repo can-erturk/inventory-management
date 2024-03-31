@@ -4,17 +4,22 @@ import solveToken from '#helpers/solveToken.js';
 import getUserByID from '#helpers/getUserByID.js';
 
 export default async function viewShared(req, res) {
-  const { jwt } = req.body;
+  const { jwt } = req.query;
 
   // Solve token
   const user = await solveToken(jwt);
 
   try {
     await connectDB();
+
+    // Find shared access
     const shared = await Product.findOne({ accessOrigin: user.id });
 
+    // Filter to remove origin user
+    const sharedAccess = shared?.access.filter((id) => id !== user.id);
+
     // If no shared access found
-    if (!shared.access.length > 1) {
+    if (!sharedAccess?.length > 0) {
       return res.send({
         status: 404,
         message: 'No shared access found.',
@@ -24,9 +29,9 @@ export default async function viewShared(req, res) {
     // Create an array of shared users
     let sharedUsers = [];
 
-    // Loop through shared access
-    for (let i = 0; i < shared.access.length; i++) {
-      const user = await getUserByID(shared.access[i]);
+    // Loop through shared access and get access shared users
+    for (let i = 0; i < sharedAccess.length; i++) {
+      const user = await getUserByID(sharedAccess[i]);
 
       // If user found push it to sharedUsers array
       if (user.status) {

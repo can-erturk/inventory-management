@@ -1,5 +1,6 @@
 import connectDB from '#config/mongodb/connectDB.js';
 import Product from '#models/productModel.js';
+import Order from '#models/orderModel.js';
 import solveToken from '#helpers/solveToken.js';
 import isAccessExist from './helpers/isAccessExist.js';
 
@@ -37,10 +38,15 @@ export default async function revokeAccess(req, res) {
 
   try {
     await connectDB();
+
+    // Revoke access for products
     await Product.updateOne(
       { accessOrigin: user.id },
       { $pull: { access: id } },
     );
+
+    // Revoke access for orders
+    await Order.updateOne({ accessOrigin: user.id }, { $pull: { access: id } });
 
     return res.send({
       status: 200,
