@@ -1,6 +1,7 @@
 import { v4 } from 'uuid';
 import connectDB from '#config/mongodb/connectDB.js';
 import Order from '#models/orderModel.js';
+import { scheduleOrder } from '#services/scheduleOrders.js';
 
 const uuidv4 = v4;
 
