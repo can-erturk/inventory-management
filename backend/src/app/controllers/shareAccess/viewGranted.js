@@ -32,8 +32,8 @@ export default async function viewGranted(req, res) {
     let grantedAccess = [];
 
     // Loop through shared access and get access shared users
-    for (let i = 0; i < granted.length; i++) {
-      const user = await getUserByID(granted[i]);
+    for (let i = 0; i < grantedProducts.length; i++) {
+      const user = await getUserByID(grantedProducts[i]);
 
       // If user found push it to shared array
       if (user.status) {
