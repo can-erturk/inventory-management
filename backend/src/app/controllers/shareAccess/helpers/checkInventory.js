@@ -14,7 +14,7 @@ export default async function checkInventory(req, res, userID) {
     if (!productInventory) {
       await Product.create({
         accessOrigin: userID,
-        access: [],
+        access: [userID],
         products: [],
       });
     }
@@ -23,7 +23,7 @@ export default async function checkInventory(req, res, userID) {
     if (!orderInventory) {
       await Order.create({
         accessOrigin: userID,
-        access: [],
+        access: [userID],
         orders: [],
       });
     }
