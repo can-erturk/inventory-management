@@ -4,6 +4,7 @@ import Order from '#models/orderModel.js';
 import solveToken from '#helpers/solveToken.js';
 import isAccessExist from './helpers/isAccessExist.js';
 import getUserByID from '#helpers/getUserByID.js';
+import checkInventory from './helpers/checkInventory.js';
 
 export default async function shareAccess(req, res) {
   const { jwt, id } = req.body;
@@ -49,6 +50,9 @@ export default async function shareAccess(req, res) {
 
   try {
     await connectDB();
+
+    // Check inventory and create if not exist
+    await checkInventory(req, res, id);
 
     // Share access for products
     await Product.updateOne(
