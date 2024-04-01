@@ -2,6 +2,7 @@ import connectDB from '#config/mongodb/connectDB.js';
 import Product from '#models/productModel.js';
 import solveToken from '#helpers/solveToken.js';
 import getUserByID from '#helpers/getUserByID.js';
+import checkInventory from './helpers/checkInventory.js';
 
 export default async function viewShared(req, res) {
   const { jwt } = req.body;
@@ -11,6 +12,9 @@ export default async function viewShared(req, res) {
 
   try {
     await connectDB();
+
+    // Check inventory and create if not exists
+    await checkInventory(req, res, user.id);
 
     // Find shared access
     const shared = await Product.findOne({ accessOrigin: user.id });
