@@ -2,6 +2,7 @@ import express from 'express';
 import checkJwt from '#middlewares/checkJwt.js';
 import shareAccess from '#controllers/shareAccess/shareAccess.js';
 import viewShared from '#controllers/shareAccess/viewShared.js';
+import viewGranted from '#controllers/shareAccess/viewGranted.js';
 import revokeAccess from '#controllers/shareAccess/revokeAccess.js';
 import generateURL from '#controllers/shareAccess/generateURL.js';
 
@@ -17,8 +18,12 @@ app.post('/share', (req, res) => {
   return shareAccess(req, res);
 });
 
-app.post('/view', (req, res) => {
+app.post('/view-shared', (req, res) => {
   return viewShared(req, res);
+});
+
+app.post('/view-granted', (req, res) => {
+  return viewGranted(req, res);
 });
 
 app.post('/revoke', (req, res) => {
