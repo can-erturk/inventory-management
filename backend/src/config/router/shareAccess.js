@@ -5,6 +5,7 @@ import viewShared from '#controllers/shareAccess/viewShared.js';
 import viewGranted from '#controllers/shareAccess/viewGranted.js';
 import generateURL from '#controllers/shareAccess/generateURL.js';
 import revokeShared from '#controllers/shareAccess/revokeShared.js';
+import revokeGranted from '#controllers/shareAccess/revokeGranted.js';
 
 const app = express();
 
@@ -28,6 +29,10 @@ app.post('/view-granted', (req, res) => {
 
 app.post('/revoke-shared', (req, res) => {
   return revokeShared(req, res);
+});
+
+app.post('/revoke-granted', (req, res) => {
+  return revokeGranted(req, res);
 });
 
 export default app;
