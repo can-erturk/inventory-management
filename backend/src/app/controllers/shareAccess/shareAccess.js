@@ -20,21 +20,14 @@ export default async function shareAccess(req, res) {
   // Solve token
   const user = await solveToken(jwt);
 
-  // Check if user is owner
-  if (id === user.id) {
-    return res.send({
-      status: 403,
-      message: 'You already have access to the inventory.',
-    });
-  }
-
   // Check if user already has access
   const checkAccess = await isAccessExist(id, user.id);
 
-  if (checkAccess === true) {
+  // Check if user is owner
+  if (id === user.id || checkAccess === true) {
     return res.send({
       status: 403,
-      message: 'This user already has access to the inventory.',
+      message: 'You already have access to the inventory.',
     });
   }
 
@@ -65,7 +58,7 @@ export default async function shareAccess(req, res) {
 
     return res.send({
       status: 200,
-      message: 'Access shared successfully.',
+      message: 'Access granted successfully.',
     });
   } catch (error) {
     return res.send({
