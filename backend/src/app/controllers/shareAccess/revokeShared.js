@@ -4,7 +4,7 @@ import Order from '#models/orderModel.js';
 import solveToken from '#helpers/solveToken.js';
 import isAccessExist from './helpers/isAccessExist.js';
 
-export default async function revokeAccess(req, res) {
+export default async function revokeShared(req, res) {
   const { jwt, id } = req.body;
 
   // Solve token
@@ -50,7 +50,7 @@ export default async function revokeAccess(req, res) {
 
     return res.send({
       status: 200,
-      message: 'Access revoked successfully.',
+      message: 'Shared access revoked successfully.',
     });
   } catch (error) {
     return res.send({

@@ -3,8 +3,8 @@ import checkJwt from '#middlewares/checkJwt.js';
 import shareAccess from '#controllers/shareAccess/shareAccess.js';
 import viewShared from '#controllers/shareAccess/viewShared.js';
 import viewGranted from '#controllers/shareAccess/viewGranted.js';
-import revokeAccess from '#controllers/shareAccess/revokeAccess.js';
 import generateURL from '#controllers/shareAccess/generateURL.js';
+import revokeShared from '#controllers/shareAccess/revokeShared.js';
 
 const app = express();
 
@@ -26,8 +26,8 @@ app.post('/view-granted', (req, res) => {
   return viewGranted(req, res);
 });
 
-app.post('/revoke', (req, res) => {
-  return revokeAccess(req, res);
+app.post('/revoke-shared', (req, res) => {
+  return revokeShared(req, res);
 });
 
 export default app;
