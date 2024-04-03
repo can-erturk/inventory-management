@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import DOMPurify from 'dompurify'
 import { useDispatch } from 'react-redux'
 import { setJWT } from '@redux/auth'
@@ -11,14 +11,17 @@ function Login() {
   const [formError, setFormError] = useState(null)
   const [rememberCheckbox, setRememberCheckbox] = useState(true)
 
+  const usernameRef = useRef()
+  const passwordRef = useRef()
+
   const dispatch = useDispatch()
   const apiURL = import.meta.env.VITE_APP_API_URL
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    if (e) e.preventDefault()
 
-    const user = e.target.user.value
-    const password = e.target.password.value
+    const user = usernameRef.value
+    const password = passwordRef.value
 
     const response = await axios.post(apiURL + '/auth/login', {
       user,
@@ -62,6 +65,15 @@ function Login() {
     }
   }
 
+  const handleDemoLogin = async () => {
+    // Set username and password input value
+    usernameRef.value = 'demo'
+    passwordRef.value = 'demo'
+
+    // Submit the form
+    handleSubmit()
+  }
+
   return (
     <>
       <motion.div
@@ -85,7 +97,7 @@ function Login() {
           )}
 
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form className="space-y-6" onSubmit={handleSubmit}>
+            <form className="space-y-6" onSubmit={handleSubmit} id="loginForm">
               <div>
                 <label htmlFor="user" className="block text-sm text-lighten">
                   Email or Username
@@ -97,6 +109,7 @@ function Login() {
                     type="text"
                     required
                     className="form-input"
+                    ref={usernameRef}
                   />
                 </div>
               </div>
@@ -117,6 +130,7 @@ function Login() {
                     type="password"
                     required
                     className="form-input"
+                    ref={passwordRef}
                   />
                 </div>
               </div>
@@ -155,6 +169,15 @@ function Login() {
               >
                 Signup now
               </Link>
+            </p>
+
+            <p className="mt-4 text-center text-xs text-gray-500">
+              <button
+                className="font-semibold leading-6 text-blue-500 hover:text-blue-400 underline"
+                onClick={handleDemoLogin}
+              >
+                Click here to continue with demo account
+              </button>
             </p>
           </div>
         </div>
