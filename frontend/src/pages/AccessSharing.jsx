@@ -4,13 +4,13 @@ import useDocumentTitle from '@/lib/hooks/useDocumentTitle'
 import AccessURL from '@/components/sections/AccessURL'
 import { useEffect, useState } from 'react'
 import SharedAccess from '@/components/sections/SharedAccess'
-import GrantedAccess from '@/components/sections/GrantedAccess'
-import shareAccess from '@/lib/helpers/shareAccess'
+import ReceivedAccess from '@/components/sections/ReceivedAccess'
+import receiveAccess from '@/lib/helpers/receiveAccess'
 
 function ShareAccess() {
   useDocumentTitle('Share access | Inventory Management System')
 
-  const [grantedAccess, setGrantedAccess] = useState({})
+  const [receivedAccess, setReceivedAccess] = useState({})
 
   useEffect(() => {
     // Check if an id is present in the URL
@@ -19,7 +19,7 @@ function ShareAccess() {
 
     if (id) {
       // Share access with the user
-      shareAccess(id, setGrantedAccess)
+      receiveAccess(id, setReceivedAccess)
 
       // Clear the URL
       window.history.replaceState({}, document.title, window.location.pathname)
@@ -33,7 +33,7 @@ function ShareAccess() {
       exit={{ opacity: 0 }}
     >
       <div className="container mb-8">
-        <Breadcrumbs path={['Share Access']} />
+        <Breadcrumbs path={['Access Sharing']} />
 
         <div className="flex flex-col gap-4">
           <AccessURL />
@@ -41,9 +41,9 @@ function ShareAccess() {
           <div className="flex max-lg:flex-col gap-4">
             <SharedAccess />
 
-            <GrantedAccess
-              grantedAccess={grantedAccess}
-              setGrantedAccess={setGrantedAccess}
+            <ReceivedAccess
+              receivedAccess={receivedAccess}
+              setReceivedAccess={setReceivedAccess}
             />
           </div>
         </div>

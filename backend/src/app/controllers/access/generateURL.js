@@ -12,6 +12,6 @@ export default async function generateURL(req, res) {
   return res.send({
     status: 200,
     message: 'URL generated successfully.',
-    url: `${FRONTEND_BASE_URL}/share-access?id=${user.id}`,
+    url: `${FRONTEND_BASE_URL}/access-sharing?id=${user.id}`,
   });
 }

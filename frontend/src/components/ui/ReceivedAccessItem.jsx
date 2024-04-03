@@ -3,22 +3,22 @@ import { toast } from 'react-toastify'
 
 const { VITE_APP_API_URL } = import.meta.env
 
-function GrantedAccessItem({ granted, setGrantedAccess }) {
+function ReceivedAccessItem({ received, setReceivedAccess }) {
   const jwt = localStorage.getItem('jwt')
 
   // Helper function to revoke access
   const handleRevokeAccess = async () => {
     try {
       // Revoke access from the user
-      await axios.post(VITE_APP_API_URL + '/share-access/revoke-granted', {
+      await axios.post(VITE_APP_API_URL + '/access/revoke-received', {
         jwt,
-        id: granted.id,
+        id: received.id,
       })
 
-      // Update the granted access state
-      setGrantedAccess((prev) => ({
+      // Update the received access state
+      setReceivedAccess((prev) => ({
         ...prev,
-        granted: prev.granted.filter((g) => g.id !== granted.id),
+        received: prev.received.filter((g) => g.id !== received.id),
       }))
 
       toast.success('Access revoked successfully.')
@@ -33,10 +33,10 @@ function GrantedAccessItem({ granted, setGrantedAccess }) {
       {/* User details */}
       <div>
         <div className="text-sm max-w-[12.5rem] max-sm:max-w-[8rem] overflow-hidden text-ellipsis">
-          {granted.username}
+          {received.username}
         </div>
         <div className="text-lighten/70 text-xs max-w-[12.5rem] max-sm:max-w-[8rem] overflow-hidden text-ellipsis">
-          {granted.email}
+          {received.email}
         </div>
       </div>
 
@@ -46,10 +46,10 @@ function GrantedAccessItem({ granted, setGrantedAccess }) {
         onClick={handleRevokeAccess}
       >
         <span>Revoke</span>
-        <span className="max-md:hidden"> granted access</span>
+        <span className="max-md:hidden"> received access</span>
       </button>
     </div>
   )
 }
 
-export default GrantedAccessItem
+export default ReceivedAccessItem

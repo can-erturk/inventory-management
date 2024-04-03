@@ -13,7 +13,7 @@ function AccessURL() {
     // Fetch the URL from the backend
     if (jwt) {
       axios
-        .post(VITE_APP_API_URL + '/share-access/generate-url', {
+        .post(VITE_APP_API_URL + '/access/generate-url', {
           jwt,
         })
         .then((res) => {
@@ -48,7 +48,7 @@ function AccessURL() {
     <div className="flex flex-col bg-default border border-zinc-200 rounded-xl">
       {/* Header */}
       <div className="border-b border-zinc-200 py-4 px-6 flex-shrink-0">
-        <h2>Share Access</h2>
+        <h2>Access Sharing</h2>
       </div>
 
       <div className="py-4 max-lg:py-16 px-6 flex max-lg:flex-col items-center lg:justify-start max-lg:justify-center flex-grow gap-6 max-lg:gap-4">

@@ -3,7 +3,7 @@ import Product from '#models/productModel.js';
 import solveToken from '#helpers/solveToken.js';
 import getUserByID from '#helpers/getUserByID.js';
 
-export default async function viewGranted(req, res) {
+export default async function viewReceived(req, res) {
   const { jwt } = req.body;
 
   // Solve token
@@ -12,32 +12,32 @@ export default async function viewGranted(req, res) {
   try {
     await connectDB();
 
-    // Find granted access with accessOrigin not equal to user id
-    const granted = await Product.find({
+    // Find received access with accessOrigin not equal to user id
+    const received = await Product.find({
       accessOrigin: { $ne: user.id },
       access: user.id,
     });
 
-    // Create an array of granted products
-    const grantedProducts = [];
+    // Create an array of received products
+    const receivedProducts = [];
 
-    // Loop through granted access and get access shared users
-    if (granted.length > 0) {
-      granted.forEach((product) => {
-        grantedProducts.push(product.accessOrigin);
+    // Loop through received access and get access shared users
+    if (received.length > 0) {
+      received.forEach((product) => {
+        receivedProducts.push(product.accessOrigin);
       });
     }
 
-    // Create an array of granted users
-    let grantedAccess = [];
+    // Create an array of received users
+    let receivedAccess = [];
 
     // Loop through shared access and get access shared users
-    for (let i = 0; i < grantedProducts.length; i++) {
-      const user = await getUserByID(grantedProducts[i]);
+    for (let i = 0; i < receivedProducts.length; i++) {
+      const user = await getUserByID(receivedProducts[i]);
 
       // If user found push it to shared array
       if (user.status) {
-        grantedAccess.push({
+        receivedAccess.push({
           id: user.data.id,
           username: user.data.username,
           email: user.data.email,
@@ -47,8 +47,8 @@ export default async function viewGranted(req, res) {
 
     return res.send({
       status: 200,
-      message: 'Granted access retrieved successfully.',
-      granted: grantedAccess,
+      message: 'Received access retrieved successfully.',
+      received: receivedAccess,
     });
   } catch (error) {
     return res.send({

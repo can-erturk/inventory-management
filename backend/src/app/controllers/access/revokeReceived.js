@@ -4,7 +4,7 @@ import Order from '#models/orderModel.js';
 import solveToken from '#helpers/solveToken.js';
 import isAccessExist from './helpers/isAccessExist.js';
 
-export default async function revokeGranted(req, res) {
+export default async function revokeReceived(req, res) {
   const { jwt, id } = req.body;
 
   // Solve token
@@ -32,7 +32,7 @@ export default async function revokeGranted(req, res) {
   if (checkAccess === false) {
     return res.send({
       status: 404,
-      message: 'No shared access found.',
+      message: 'No Received access found.',
     });
   }
 
@@ -50,7 +50,7 @@ export default async function revokeGranted(req, res) {
 
     return res.send({
       status: 200,
-      message: 'Shared access revoked successfully.',
+      message: 'Received access revoked successfully.',
     });
   } catch (error) {
     return res.send({

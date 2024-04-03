@@ -6,7 +6,7 @@ import isAccessExist from './helpers/isAccessExist.js';
 import getUserByID from '#helpers/getUserByID.js';
 import checkInventory from './helpers/checkInventory.js';
 
-export default async function shareAccess(req, res) {
+export default async function receiveAccess(req, res) {
   const { jwt, id } = req.body;
 
   // Check if id is provided
@@ -58,7 +58,7 @@ export default async function shareAccess(req, res) {
 
     return res.send({
       status: 200,
-      message: 'Access granted successfully.',
+      message: 'Access received successfully.',
       username: requestedUser.data.username,
       email: requestedUser.data.email,
     });

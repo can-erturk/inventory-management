@@ -10,7 +10,7 @@ function SharedAccessItem({ shared, setSharedAccess }) {
   const handleRevokeAccess = async () => {
     try {
       // Revoke access from shared user
-      await axios.post(VITE_APP_API_URL + '/share-access/revoke-shared', {
+      await axios.post(VITE_APP_API_URL + '/access/revoke-shared', {
         jwt,
         id: shared.id,
       })

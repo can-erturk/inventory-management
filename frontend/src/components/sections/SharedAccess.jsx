@@ -15,7 +15,7 @@ function SharedAccess() {
     const getSharedAccess = async () => {
       try {
         const { data } = await axios.post(
-          VITE_APP_API_URL + '/share-access/view-shared',
+          VITE_APP_API_URL + '/access/view-shared',
           {
             jwt,
           },

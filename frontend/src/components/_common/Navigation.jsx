@@ -15,9 +15,9 @@ function Navigation() {
         <span>Scheduled Orders</span>
       </NavLink>
 
-      <NavLink to="/share-access" className="navlink">
+      <NavLink to="/access-sharing" className="navlink">
         <FaKey size={16} className="inline-block -mt-px" />
-        <span>Share Access</span>
+        <span>Access Sharing</span>
       </NavLink>
     </>
   )
