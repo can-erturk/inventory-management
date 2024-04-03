@@ -59,6 +59,8 @@ export default async function shareAccess(req, res) {
     return res.send({
       status: 200,
       message: 'Access granted successfully.',
+      username: requestedUser.data.username,
+      email: requestedUser.data.email,
     });
   } catch (error) {
     return res.send({
