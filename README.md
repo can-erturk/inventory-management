@@ -6,7 +6,7 @@ This project is a full-stack project developed for users to manage their product
 
 I handled both the design and development process together and used technologies like MUI, Headless UI, Framer Motion, Redux Toolkit and Zustand in the front-end.
 
-View this project in my portfolio by clicking the link below.
+You can view this project in my portfolio by clicking the link below.
 
 [https://canerturk.dev/project/inventory-management](https://canerturk.dev/project/inventory-management)
 
