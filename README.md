@@ -39,4 +39,4 @@ This project is released under the MIT License. For license details, see the [LI
 
 [Click here](https://mern-products.vercel.app/) to see live preview.
 
-![React crypto price tracking website preview](./preview.png)
+![React crypto price tracking website preview](./project-preview.png)
